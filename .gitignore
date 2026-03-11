@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+logs/pipeline.log
+data/raw/raw_backup.json
+data/processed/clean_*.json
+data/processed/deduped_*.json
+data/review/flagged_cases.*
+data/review/review_summary.md
+data/reports/quality_report.*

@@ -1,0 +1,58 @@
+input_path: Master_QA_Dataset.json
+output_version: v1
+log_path: logs/pipeline.log
+
+aio:
+  preserve_raw_backup: true
+
+normalization:
+  unicode_form: NFKC
+  strip_text: true
+  collapse_spaces: true
+  normalize_line_breaks: true
+  remove_invisible_chars: true
+  remove_tatweel: true
+  normalize_quotes: true
+  normalize_repeated_punctuation: true
+  normalize_punctuation_spacing: true
+  normalize_arabic_variants: false
+  arabic_variant_map:
+    "أ": "ا"
+    "إ": "ا"
+    "آ": "ا"
+    "ى": "ي"
+    "ؤ": "و"
+    "ئ": "ي"
+
+merge_detection:
+  boundary_merge_enabled: true
+  boundary_merge_auto_fix: true
+  low_confidence_merge_flag_only: true
+
+flagging:
+  min_text_len: 2
+  max_question_len: 450
+  max_answer_len: 1800
+  numeric_ratio_warn: 0.35
+  symbol_ratio_warn: 0.25
+  mixed_script_heavy_threshold: 0.40
+  low_confidence_threshold: 0.85
+
+exact_dedup:
+  enabled: true
+  mode: question_answer_context
+
+near_dedup:
+  enabled: true
+  rapidfuzz_threshold_high: 97
+  rapidfuzz_threshold_medium: 92
+  token_jaccard_threshold_medium: 0.85
+  tfidf_cosine_threshold_medium: 0.88
+  auto_remove_high_confidence: false
+
+review:
+  write_review_files: true
+  decisions_file: data/review/review_decisions.jsonl
+
+reporting:
+  sample_changes: 20
