@@ -1,0 +1,6 @@
+# Optional dependencies. The pipeline includes stdlib fallbacks when unavailable.
+PyYAML>=6.0
+rapidfuzz>=3.0
+scikit-learn>=1.3
+regex>=2023.0
+pandas>=2.0
